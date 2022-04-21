@@ -40,7 +40,7 @@ describe('Funcionalidade Página de Produtos', () => {
         cy.get('.single_add_to_cart_button').click()
 
         cy.get('.dropdown-toggle > .mini-cart-items').should('contain', quantidadeDoProduto)
-        cy.get('.woocommerce-message').should('contain', quantidadeDoProduto + ' × “Ajax Full-Zip Sweatshirt” foram adicionados no seu carrinho.')
+        cy.get('.woocommerce-message').should('contain', quantidadeDoProduto + ' × “' + nomeDoProduto + '” foram adicionados no seu carrinho.')
 
         cy.get('.woocommerce-message > .button').click()
 
