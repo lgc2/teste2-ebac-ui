@@ -27,4 +27,28 @@ describe('Funcionalidade Página de Produtos', () => {
         cy.get('.dropdown-toggle > .mini-cart-items').should('contain', quantidadeDoProduto)
         cy.get('.woocommerce-message').should('contain', quantidadeDoProduto + ' × “Ajax Full-Zip Sweatshirt” foram adicionados no seu carrinho.')
     });
+
+    it('Deve excluir o produto do carrinho', () => {
+        let quantidadeDoProduto = 10
+        let nomeDoProduto = 'Ajax Full-Zip Sweatshirt'
+
+        cy.get('[class="product-block grid"]')
+            .contains(nomeDoProduto).click()
+        cy.get('.button-variable-item-M').click()
+        cy.get('.button-variable-item-Blue').click()
+        cy.get('.input-text').clear().type(quantidadeDoProduto)
+        cy.get('.single_add_to_cart_button').click()
+
+        cy.get('.dropdown-toggle > .mini-cart-items').should('contain', quantidadeDoProduto)
+        cy.get('.woocommerce-message').should('contain', quantidadeDoProduto + ' × “Ajax Full-Zip Sweatshirt” foram adicionados no seu carrinho.')
+
+        cy.get('.woocommerce-message > .button').click()
+
+        cy.get('.page-title').should('contain', 'Carrinho')
+
+        cy.get('.remove > .fa').click()
+
+        cy.get('.woocommerce-message').should('contain', '“Ajax Full-Zip Sweatshirt” removido')
+        cy.get('.cart-empty').should('contain', 'Seu carrinho está vazio.')
+    });
 });
