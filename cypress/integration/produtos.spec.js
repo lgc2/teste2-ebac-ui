@@ -48,7 +48,7 @@ describe('Funcionalidade Página de Produtos', () => {
 
         cy.get('.remove > .fa').click()
 
-        cy.get('.woocommerce-message').should('contain', '“Ajax Full-Zip Sweatshirt” removido')
+        cy.get('.woocommerce-message').should('contain', '“' + nomeDoProduto + '” removido')
         cy.get('.cart-empty').should('contain', 'Seu carrinho está vazio.')
     });
 });
