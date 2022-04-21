@@ -1,1 +1,1 @@
-Automação de UI com Cypress - Parte 1
+Automação de UI com Cypress - Parte 2
