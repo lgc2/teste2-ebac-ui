@@ -2,7 +2,7 @@
 var faker = require('faker');
 
 describe('Funcionalidade Pré Cadastro', () => {
-    
+
     beforeEach(() => {
         cy.visit('minha-conta/')
     });
@@ -22,7 +22,16 @@ describe('Funcionalidade Pré Cadastro', () => {
         cy.get('.woocommerce-Button').click()
 
         cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso.')
+    });
 
+    it.only('Deve completar o pré-cadastro com sucesso utilizando Comandos Customizados', () => {
+        let nomeFaker = faker.name.firstName()
+        let sobrenomeFaker = faker.name.lastName()
+        let emailFaker = faker.internet.email(nomeFaker)
+
+        cy.preCadastro(emailFaker, '!testeaula3$$', nomeFaker, sobrenomeFaker)
+
+        cy.get('.woocommerce-message').should('contain', 'Detalhes da conta modificados com sucesso.')
     });
 
 });

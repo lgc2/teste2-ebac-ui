@@ -28,6 +28,30 @@ describe('Funcionalidade Página de Produtos', () => {
         cy.get('.woocommerce-message').should('contain', quantidadeDoProduto + ' × “Ajax Full-Zip Sweatshirt” foram adicionados no seu carrinho.')
     });
 
+    it('Deve adicionar produtos ao carrinho -- Utilizando Comando Customizado', () => {
+        let quantidadeDoProduto = 3
+        let nomeDoProduto = 'Argus All-Weather Tank'
+        let tamanho = 'L'
+        let cor = 'Gray'
+
+        cy.adicionaProdutosAoCarrinho(nomeDoProduto, tamanho, cor, quantidadeDoProduto)
+
+        cy.get('.dropdown-toggle > .mini-cart-items').should('contain', quantidadeDoProduto)
+        cy.get('.woocommerce-message').should('contain', quantidadeDoProduto + ' × “' + nomeDoProduto + '” foram adicionados no seu carrinho.')
+    });
+
+    it.only('Deve adicionar produtos ao carrinho -- Utilizando Comando Customizado', () => {
+        let quantidadeDoProduto = 10
+        let nomeDoProduto = 'Arcadio Gym Short'
+        let tamanho = '34'
+        let cor = 'Blue'
+
+        cy.adicionaProdutosAoCarrinho(nomeDoProduto, tamanho, cor, quantidadeDoProduto)
+
+        cy.get('.dropdown-toggle > .mini-cart-items').should('contain', quantidadeDoProduto)
+        cy.get('.woocommerce-message').should('contain', quantidadeDoProduto + ' × “' + nomeDoProduto + '” foram adicionados no seu carrinho.')
+    });
+
     it('Deve excluir o produto do carrinho', () => {
         let quantidadeDoProduto = 10
         let nomeDoProduto = 'Ajax Full-Zip Sweatshirt'
